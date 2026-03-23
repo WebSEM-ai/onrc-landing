@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1E40AF;
+  --color-primary-light: #3B82F6;
+  --color-primary-dark: #1E3A8A;
+  --color-accent: #F59E0B;
+  --color-accent-light: #FCD34D;
+  --color-background: #F8FAFC;
+  --font-sans: 'Sora', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Sora', sans-serif;
+  background-color: #F8FAFC;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+@keyframes pulse-highlight {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(30, 64, 175, 0); }
+  50% { box-shadow: 0 0 0 8px rgba(30, 64, 175, 0.3); }
+}
+
+.pulse-highlight {
+  animation: pulse-highlight 0.6s ease-in-out 3;
+}
+
+/* ═══════════════════════════════════════════
+   HERO SVG ANIMATIONS
+   ═══════════════════════════════════════════ */
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.hero-float {
+  animation: heroFloat 4s ease-in-out infinite;
+}
+
+@keyframes particleRise {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 0.12; }
+  90% { opacity: 0.05; }
+  100% { transform: translateY(-220px); opacity: 0; }
+}
+
+.hero-particle {
+  animation: particleRise 7s linear infinite;
+}
+
+@keyframes signatureDraw {
+  0% { stroke-dashoffset: 120; opacity: 0.8; }
+  50% { stroke-dashoffset: 0; opacity: 1; }
+  70% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+.hero-signature {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  animation: signatureDraw 5s ease-in-out infinite;
+}
+
+@keyframes checkmarkDraw {
+  0%, 55% { stroke-dashoffset: 24; opacity: 0; }
+  60% { opacity: 1; }
+  75% { stroke-dashoffset: 0; opacity: 1; }
+  90% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+.hero-checkmark {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: checkmarkDraw 5s ease-in-out infinite;
+}
+
+@keyframes checkmarkBgPop {
+  0%, 55% { transform: scale(0); opacity: 0; }
+  65% { transform: scale(1.15); opacity: 0.15; }
+  75% { transform: scale(1); opacity: 0.12; }
+  90% { opacity: 0.12; }
+  100% { opacity: 0; }
+}
+
+.hero-checkmark-bg {
+  transform-origin: 10px 10px;
+  animation: checkmarkBgPop 5s ease-in-out infinite;
+}
+
+@keyframes stampDrop {
+  0%, 10% { transform: translateY(-40px); opacity: 1; }
+  20% { transform: translateY(2px); opacity: 1; }
+  24% { transform: translateY(-4px); }
+  28% { transform: translateY(0px); }
+  50% { transform: translateY(0px); opacity: 1; }
+  60% { transform: translateY(-40px); opacity: 1; }
+  65% { transform: translateY(-40px); opacity: 0; }
+  100% { transform: translateY(-40px); opacity: 0; }
+}
+
+.hero-stamp-handle {
+  animation: stampDrop 6s ease-in-out infinite;
+}
+
+@keyframes stampImprint {
+  0%, 22% { opacity: 0; transform: scale(0.8); }
+  28% { opacity: 1; transform: scale(1.05); }
+  32% { transform: scale(1); }
+  70% { opacity: 1; transform: scale(1); }
+  85% { opacity: 0; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.8); }
+}
+
+.hero-stamp-imprint-mini {
+  transform-origin: 123px 30px;
+  animation: stampImprint 6s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════
+   GLASSMORPHISM HEADER
+   ═══════════════════════════════════════════ */
+
+.nav-glassmorphism {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background 300ms ease, border-color 300ms ease;
+}
+
+.nav-glassmorphism.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+/* ═══════════════════════════════════════════
+   FULLSCREEN MENU
+   ═══════════════════════════════════════════ */
+
+.fullscreen-menu {
+  background: rgba(15, 23, 42, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
