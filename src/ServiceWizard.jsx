@@ -8,9 +8,6 @@ const entityTypes = [
   { id: 'if', label: 'Întreprindere Familială (IF)' },
   { id: 'srl', label: 'SRL' },
   { id: 'sa', label: 'SA' },
-  { id: 'snc', label: 'SNC / SCS' },
-  { id: 'ong', label: 'ONG / Asociație' },
-  { id: 'fundatie', label: 'Fundație' },
   { id: 'oricare', label: 'Nu știu / Oricare' },
 ]
 
@@ -21,9 +18,6 @@ const entityCategoryMap = {
   if: ['infiintare', 'modificari', 'radiere', 'documente'],
   srl: ['infiintare', 'modificari', 'radiere', 'mentiuni', 'documente'],
   sa: ['infiintare', 'modificari', 'radiere', 'mentiuni', 'documente'],
-  snc: ['infiintare', 'modificari', 'radiere', 'mentiuni', 'documente'],
-  ong: ['infiintare', 'modificari', 'mentiuni', 'documente'],
-  fundatie: ['infiintare', 'modificari', 'mentiuni', 'documente'],
   oricare: ['infiintare', 'modificari', 'radiere', 'mentiuni', 'documente'],
 }
 
@@ -68,7 +62,7 @@ function PanelHeader({ step, title, subtitle, active, count }) {
         {step}
       </span>
       <div className="min-w-0">
-        <h3 className={`text-sm font-semibold leading-tight ${active ? 'text-gray-900' : 'text-gray-400'}`}>
+        <h3 className={`text-base font-semibold leading-tight ${active ? 'text-gray-900' : 'text-gray-400'}`}>
           {title}
         </h3>
         {subtitle && <p className="text-xs text-gray-400 truncate">{subtitle}</p>}
@@ -182,7 +176,8 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
   }, [searchP1])
 
   const totalPrice = useMemo(() => {
-    return cart.reduce((sum, item) => sum + extractPrice(item.price), 0)
+    if (cart.length === 0) return 0
+    return 300 + (cart.length - 1) * 100
   }, [cart])
 
   /* ─── Handlers ─── */
@@ -237,7 +232,7 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
             <button
               key={entity.id}
               onClick={() => toggleEntity(entity.id)}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-sm transition-all cursor-pointer ${
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-base transition-all cursor-pointer ${
                 isSelected ? 'bg-blue-50 text-[#1E40AF] font-medium' : 'hover:bg-gray-50 text-gray-700'
               }`}
             >
@@ -269,7 +264,7 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
             <button
               key={cat.id}
               onClick={() => isAllowed && setSelectedCategory(isSelected ? null : cat.id)}
-              className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-left text-sm transition-all ${
+              className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-lg text-left text-base transition-all ${
                 !isAllowed ? 'opacity-40 cursor-not-allowed' :
                 isSelected ? 'bg-blue-50 text-[#1E40AF] font-semibold ring-1 ring-[#1E40AF]/30' :
                 'hover:bg-gray-50 text-gray-700 cursor-pointer'
@@ -312,7 +307,7 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className={`flex items-center gap-2 px-3 py-2.5 rounded-lg border text-sm transition-all ${
+                    className={`flex items-center gap-2 px-4 py-3 rounded-lg border text-base transition-all ${
                       added ? 'bg-green-50 border-green-200' : 'bg-white border-gray-100 hover:border-gray-200'
                     }`}
                   >
@@ -329,7 +324,7 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
                         <span className="text-xs text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">
                           {service.duration}
                         </span>
-                        <span className="text-xs font-semibold text-[#1E40AF]">{service.price}</span>
+                        <span className="text-xs font-semibold text-[#1E40AF]">{cart.length === 0 || isInCart(service.name) ? '300 lei' : '+100 lei'}</span>
                       </div>
                     </div>
                     <button
@@ -376,7 +371,7 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
           </div>
         ) : (
           <AnimatePresence>
-            {cart.map(item => (
+            {cart.map((item, idx) => (
               <motion.div
                 key={item.name}
                 initial={{ opacity: 0, y: -10 }}
@@ -389,7 +384,7 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
                   <p className="text-sm font-medium text-gray-800 leading-tight">{item.name}</p>
                   <div className="flex items-center gap-2 mt-1">
                     <span className="text-xs text-gray-400 bg-gray-200/60 px-1.5 py-0.5 rounded">{item.category}</span>
-                    <span className="text-xs font-semibold text-[#1E40AF]">{item.price}</span>
+                    <span className="text-xs font-semibold text-[#1E40AF]">{idx === 0 ? '300 lei' : '+100 lei'}</span>
                   </div>
                 </div>
                 <button
@@ -410,7 +405,7 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
       <div className="border-t border-gray-200 pt-4 mt-4 space-y-3">
         <div className="flex items-center justify-between">
           <span className="text-sm text-gray-500">Total estimat:</span>
-          <span className="text-lg font-bold text-[#1E40AF]">{totalPrice > 0 ? `De la ${totalPrice} lei` : '—'}</span>
+          <span className="text-lg font-bold text-[#1E40AF]">{totalPrice > 0 ? `${totalPrice} lei` : '—'}</span>
         </div>
         <button
           onClick={handleRequestQuote}

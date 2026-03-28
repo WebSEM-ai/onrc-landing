@@ -7,43 +7,58 @@ import ServiceWizard from './ServiceWizard'
 /* ─── DATA ─── */
 const servicesData = [
   { id: "infiintare", category: "Înființare firme", icon: "🏢", color: "blue", services: [
-    { name: "Înființare SRL", price: "De la 350 lei", duration: "3-5 zile", popular: true },
-    { name: "Înființare PFA", price: "De la 200 lei", duration: "2-3 zile", popular: true },
-    { name: "Înființare II", price: "De la 200 lei", duration: "2-3 zile" },
-    { name: "Înființare IF", price: "De la 200 lei", duration: "3-4 zile" },
-    { name: "Înființare SA", price: "De la 800 lei", duration: "5-7 zile" },
-    { name: "Înființare ONG / Asociație", price: "De la 500 lei", duration: "5-10 zile" },
-    { name: "Înființare Fundație", price: "De la 600 lei", duration: "7-14 zile" }
+    { name: "Înființare SRL", price: "300 lei", duration: "3-5 zile", popular: true },
+    { name: "Înființare SRL-D (Debutant)", price: "300 lei", duration: "3-5 zile" },
+    { name: "Înființare PFA", price: "300 lei", duration: "2-3 zile", popular: true },
+    { name: "Înființare II", price: "300 lei", duration: "2-3 zile" },
+    { name: "Înființare IF", price: "300 lei", duration: "3-4 zile" },
+    { name: "Înființare SA", price: "300 lei", duration: "5-7 zile" },
+    { name: "Înființare Sucursală / Filială", price: "300 lei", duration: "5-7 zile" },
+    { name: "Înființare Cooperativă", price: "300 lei", duration: "7-10 zile" },
+    { name: "Înființare ONG / Asociație", price: "300 lei", duration: "5-10 zile" },
+    { name: "Înființare Fundație", price: "300 lei", duration: "7-14 zile" }
   ]},
   { id: "modificari", category: "Modificări firmă", icon: "✏️", color: "purple", services: [
-    { name: "Schimbare sediu social", price: "De la 250 lei", duration: "3-5 zile", popular: true },
-    { name: "Adăugare / retragere asociat", price: "De la 300 lei", duration: "3-5 zile" },
-    { name: "Schimbare administrator", price: "De la 250 lei", duration: "3-5 zile" },
-    { name: "Modificare obiect de activitate (CAEN)", price: "De la 250 lei", duration: "3-5 zile", popular: true },
-    { name: "Majorare capital social", price: "De la 300 lei", duration: "3-5 zile" },
-    { name: "Schimbare denumire firmă", price: "De la 250 lei", duration: "3-5 zile" },
-    { name: "Deschidere punct de lucru", price: "De la 200 lei", duration: "3-5 zile" },
-    { name: "Transformare PFA în SRL", price: "De la 500 lei", duration: "5-7 zile", popular: true }
+    { name: "Schimbare sediu social", price: "300 lei", duration: "3-5 zile", popular: true },
+    { name: "Prelungire valabilitate sediu social", price: "300 lei", duration: "3-5 zile" },
+    { name: "Adăugare / retragere asociat", price: "300 lei", duration: "3-5 zile" },
+    { name: "Schimbare administrator", price: "300 lei", duration: "3-5 zile" },
+    { name: "Modificare obiect de activitate (CAEN)", price: "300 lei", duration: "3-5 zile", popular: true },
+    { name: "Majorare capital social", price: "300 lei", duration: "3-5 zile" },
+    { name: "Reducere capital social", price: "300 lei", duration: "5-7 zile" },
+    { name: "Cesiune 100% părți sociale (preluare firmă)", price: "300 lei", duration: "5-7 zile" },
+    { name: "Schimbare denumire firmă", price: "300 lei", duration: "3-5 zile" },
+    { name: "Înscriere emblemă", price: "300 lei", duration: "3-5 zile" },
+    { name: "Deschidere punct de lucru", price: "300 lei", duration: "3-5 zile" },
+    { name: "Schimbare formă juridică (SRL → SA)", price: "300 lei", duration: "7-14 zile" },
+    { name: "Transformare PFA în SRL", price: "300 lei", duration: "5-7 zile", popular: true }
   ]},
   { id: "radiere", category: "Radiere & Dizolvare", icon: "📁", color: "red", services: [
-    { name: "Radiere SRL / SA", price: "De la 400 lei", duration: "7-14 zile" },
-    { name: "Radiere PFA / II / IF", price: "De la 250 lei", duration: "3-5 zile" },
-    { name: "Dizolvare voluntară", price: "De la 500 lei", duration: "30+ zile" },
-    { name: "Suspendare activitate", price: "De la 200 lei", duration: "2-3 zile" },
-    { name: "Reluare activitate", price: "De la 150 lei", duration: "2-3 zile" }
+    { name: "Radiere SRL / SA", price: "300 lei", duration: "7-14 zile" },
+    { name: "Radiere PFA / II / IF", price: "300 lei", duration: "3-5 zile" },
+    { name: "Dizolvare voluntară", price: "300 lei", duration: "30+ zile" },
+    { name: "Suspendare activitate", price: "300 lei", duration: "2-3 zile" },
+    { name: "Reluare activitate", price: "300 lei", duration: "2-3 zile" }
   ]},
   { id: "mentiuni", category: "Mențiuni & Depuneri", icon: "📋", color: "green", services: [
-    { name: "Depunere situații financiare", price: "De la 150 lei", duration: "1-2 zile" },
-    { name: "Cesiune părți sociale", price: "De la 300 lei", duration: "3-5 zile" },
-    { name: "Actualizare beneficiar real (AML)", price: "De la 150 lei", duration: "1-2 zile", popular: true },
-    { name: "Declarație pe propria răspundere", price: "De la 100 lei", duration: "1 zi" }
+    { name: "Depunere situații financiare", price: "300 lei", duration: "1-2 zile" },
+    { name: "Cesiune părți sociale", price: "300 lei", duration: "3-5 zile" },
+    { name: "Actualizare beneficiar real (AML)", price: "300 lei", duration: "1-2 zile", popular: true },
+    { name: "Declarație pe propria răspundere", price: "300 lei", duration: "1 zi" },
+    { name: "Depunere specimen semnătură", price: "300 lei", duration: "1-2 zile" },
+    { name: "Înregistrare contract garanție reală mobiliară", price: "300 lei", duration: "2-3 zile" },
+    { name: "Depunere act constitutiv actualizat", price: "300 lei", duration: "1-2 zile" },
+    { name: "Mențiune hotărâre AGA", price: "300 lei", duration: "2-3 zile" }
   ]},
   { id: "documente", category: "Obținere documente", icon: "🔍", color: "orange", services: [
-    { name: "Certificat constatator", price: "De la 100 lei", duration: "1-2 zile", popular: true },
-    { name: "Extras RECOM", price: "De la 50 lei", duration: "Imediat" },
-    { name: "Copii acte dosar firmă", price: "De la 100 lei", duration: "1-2 zile" },
-    { name: "Cazier fiscal", price: "De la 100 lei", duration: "1-3 zile" },
-    { name: "Certificat de înregistrare duplicat", price: "De la 150 lei", duration: "2-3 zile" }
+    { name: "Certificat constatator", price: "300 lei", duration: "1-2 zile", popular: true },
+    { name: "Extras RECOM", price: "300 lei", duration: "Imediat" },
+    { name: "Copii acte dosar firmă", price: "300 lei", duration: "1-2 zile" },
+    { name: "Cazier fiscal", price: "300 lei", duration: "1-3 zile" },
+    { name: "Certificat de înregistrare duplicat", price: "300 lei", duration: "2-3 zile" },
+    { name: "Rezervare denumire firmă", price: "300 lei", duration: "1 zi", popular: true },
+    { name: "Istoric firmă", price: "300 lei", duration: "2-3 zile" },
+    { name: "Certificat de bun platnic", price: "300 lei", duration: "1-3 zile" }
   ]}
 ]
 
@@ -198,8 +213,9 @@ export default function App() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
   const navLinks = [
-    { label: 'Servicii', href: '#servicii' },
-    { label: 'Prețuri', href: '#servicii' },
+    { label: 'Servicii', href: '/servicii' },
+    { label: 'Pachete', href: '/servicii#pachete' },
+    { label: 'Coduri CAEN', href: '/coduri-caen' },
     { label: 'Despre noi', href: '#despre' },
     { label: 'Contact', href: '#contact' },
   ]
@@ -1041,6 +1057,8 @@ export default function App() {
                 {servicesData.map(cat => (
                   <li key={cat.id}><a href="#servicii" className="hover:text-white transition-colors">{cat.category}</a></li>
                 ))}
+                <li><a href="/servicii" className="hover:text-white transition-colors text-[#F59E0B]">Toate serviciile & pachete</a></li>
+                <li><a href="/coduri-caen" className="hover:text-white transition-colors text-[#F59E0B]">Lista coduri CAEN Rev.3</a></li>
               </ul>
             </div>
             <div>

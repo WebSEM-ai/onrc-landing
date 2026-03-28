@@ -333,7 +333,7 @@ export default function CaenExplorer() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm mb-6">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            Actualizat 2025 — CAEN Rev.3
+            Actualizat 2026 — CAEN Rev.3
           </div>
           <h1 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Lora', serif" }}>
             Lista completa coduri <span className="text-[#F59E0B]">CAEN</span>
