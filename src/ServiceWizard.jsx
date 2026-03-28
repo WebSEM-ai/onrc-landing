@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 /* ─── ENTITY TYPES ─── */
 const entityTypes = [
+  { id: 'srl', label: 'SRL' },
+  { id: 'sa', label: 'SA' },
   { id: 'pfa', label: 'PFA' },
   { id: 'ii', label: 'Întreprindere Individuală (II)' },
   { id: 'if', label: 'Întreprindere Familială (IF)' },
-  { id: 'srl', label: 'SRL' },
-  { id: 'sa', label: 'SA' },
   { id: 'oricare', label: 'Nu știu / Oricare' },
 ]
 
