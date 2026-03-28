@@ -384,7 +384,7 @@ export default function App() {
                     <span>🏛️</span>
                     <span>Registrul Comerțului · Servicii profesionale</span>
                   </div>
-                  <h1 className="text-[2.2rem] md:text-[3rem] lg:text-[3.8rem] font-bold leading-[1.1] mb-3 whitespace-nowrap" style={{ fontFamily: "'Lora', serif" }}>
+                  <h1 className="text-[1.8rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.8rem] font-bold leading-[1.1] mb-3 sm:whitespace-nowrap" style={{ fontFamily: "'Lora', serif" }}>
                     Servicii <span className="relative inline-block">complete<span className="absolute left-0 right-0 bottom-1 h-[3px] bg-[#F59E0B]/60 rounded-full" /></span> ONRC
                   </h1>
                   <p className="text-[#F59E0B] text-2xl md:text-3xl lg:text-[2.8rem] italic mb-5 leading-tight" style={{ fontFamily: "'Lora', serif" }}>
@@ -450,7 +450,7 @@ export default function App() {
                     <span>⚡</span>
                     <span>ONRC Express · Dosar complet, termen rapid</span>
                   </div>
-                  <h1 className="text-[2.2rem] md:text-[3rem] lg:text-[3.8rem] font-bold leading-[1.1] mb-3 whitespace-nowrap" style={{ fontFamily: "'Lora', serif" }}>
+                  <h1 className="text-[1.8rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.8rem] font-bold leading-[1.1] mb-3 sm:whitespace-nowrap" style={{ fontFamily: "'Lora', serif" }}>
                     De la cerere la <span className="relative inline-block">aprobare<span className="absolute left-0 right-0 bottom-1 h-[3px] bg-[#F59E0B]/60 rounded-full" /></span>
                   </h1>
                   <p className="text-[#F59E0B] text-2xl md:text-3xl lg:text-[2.8rem] italic mb-5 leading-tight" style={{ fontFamily: "'Lora', serif" }}>
@@ -524,10 +524,10 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="w-full max-w-2xl relative mb-8"
+            className="w-full max-w-2xl relative mb-8 px-2 sm:px-0"
             ref={searchRef}
           >
-            <div className="relative flex items-center bg-white rounded-full h-[56px] md:h-[60px]"
+            <div className="relative flex items-center bg-white rounded-full h-[50px] sm:h-[56px] md:h-[60px]"
               style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.3)' }}>
 
               {/* Category pill */}
@@ -586,7 +586,7 @@ export default function App() {
                     if (el) el.scrollIntoView({ behavior: 'smooth' })
                   }
                 }}
-                className="mr-1.5 px-4 md:px-6 h-[44px] md:h-[48px] bg-[#1E40AF] text-white text-sm md:text-base font-semibold rounded-full hover:bg-[#1E3A8A] transition-colors cursor-pointer whitespace-nowrap"
+                className="mr-1.5 px-3 sm:px-4 md:px-6 h-[38px] sm:h-[44px] md:h-[48px] bg-[#1E40AF] text-white text-xs sm:text-sm md:text-base font-semibold rounded-full hover:bg-[#1E3A8A] transition-colors cursor-pointer whitespace-nowrap"
               >
                 Caută
               </button>
