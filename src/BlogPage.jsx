@@ -129,8 +129,8 @@ export default function BlogPage() {
       </section>
 
       {/* Posts */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
-        <div className="space-y-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post, i) => (
             <PostCard key={post.id} post={post} index={i} />
           ))}
@@ -144,7 +144,7 @@ export default function BlogPage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 pb-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-12">
         <div className="bg-gradient-to-r from-[#1E40AF] to-[#1E3A8A] rounded-2xl p-8 md:p-12 text-center text-white relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#F59E0B] rounded-full blur-3xl" />
