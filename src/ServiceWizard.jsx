@@ -441,9 +441,6 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
         >
           Solicită ofertă gratuită
         </button>
-        <p className="text-[10px] text-gray-400 leading-snug mt-2">
-          Taxele ONRC nu sunt incluse. Taxa înființare societate 155 lei. Taxele aferente altor modificări variază între 150-390 lei.
-        </p>
       </div>
     </div>
   )
@@ -538,6 +535,11 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
           {renderPanel4Content()}
         </MobileStep>
       </div>
+
+      {/* ONRC tax note */}
+      <p className="text-[10px] text-gray-400 leading-snug mt-4 text-center max-w-2xl mx-auto">
+        Taxele ONRC nu sunt incluse. Taxa înființare societate 152 lei. Taxele aferente altor modificări variază între 150-390 lei.
+      </p>
     </>
   )
 }

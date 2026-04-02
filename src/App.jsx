@@ -245,10 +245,10 @@ export default function App() {
               <LogoIcon className="w-9 h-9" />
               <span className="flex items-baseline gap-0.5">
                 <span className={`text-xl tracking-tight transition-colors duration-300 ${scrolled ? 'text-[#1E40AF]' : 'text-white'}`} style={{ fontFamily: "'Lora', serif", fontWeight: 600 }}>
-                  ONRC
+                  Act
                 </span>
                 <span className={`text-lg transition-colors duration-300 ${scrolled ? 'text-gray-500' : 'text-white/80'}`} style={{ fontFamily: "'Sora', sans-serif", fontWeight: 500, letterSpacing: '0.05em' }}>
-                  Express
+                  2Go
                 </span>
               </span>
             </a>
@@ -360,7 +360,7 @@ export default function App() {
             return <circle key={a} cx={100 + r * Math.cos(rad)} cy={100 + r * Math.sin(rad)} r="2.5" fill="white" />
           })}
           <defs><path id="sealTextPath" d="M 100,100 m -60,0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0" /></defs>
-          <text fill="white" fontSize="12" fontFamily="Lora, serif" letterSpacing="8"><textPath href="#sealTextPath" startOffset="15%">ONRC</textPath></text>
+          <text fill="white" fontSize="12" fontFamily="Lora, serif" letterSpacing="8"><textPath href="#sealTextPath" startOffset="15%">Act2Go</textPath></text>
         </svg>
 
         {/* Content — vertically centered with top bias */}
@@ -385,7 +385,7 @@ export default function App() {
                     <span>Registrul Comerțului · Servicii profesionale</span>
                   </div>
                   <h1 className="text-[1.8rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.8rem] font-bold leading-[1.1] mb-3 sm:whitespace-nowrap" style={{ fontFamily: "'Lora', serif" }}>
-                    Servicii <span className="relative inline-block">complete<span className="absolute left-0 right-0 bottom-1 h-[3px] bg-[#F59E0B]/60 rounded-full" /></span> ONRC
+                    Servicii <span className="relative inline-block">complete<span className="absolute left-0 right-0 bottom-1 h-[3px] bg-[#F59E0B]/60 rounded-full" /></span> Act2Go
                   </h1>
                   <p className="text-[#F59E0B] text-2xl md:text-3xl lg:text-[2.8rem] italic mb-5 leading-tight" style={{ fontFamily: "'Lora', serif" }}>
                     rapid, sigur, fără bătăi de cap
@@ -428,7 +428,7 @@ export default function App() {
                         <circle cx="40" cy="40" r="34" stroke="#10B981" strokeWidth="2" fill="none" opacity="0.7" />
                         <circle cx="40" cy="40" r="28" stroke="#10B981" strokeWidth="0.8" fill="none" opacity="0.35" />
                         <text x="40" y="37" textAnchor="middle" fontSize="9" fontWeight="700" fill="#10B981" fontFamily="Sora, sans-serif">APROBAT</text>
-                        <text x="40" y="48" textAnchor="middle" fontSize="5.5" fill="#10B981" opacity="0.55" fontFamily="Sora, sans-serif">ONRC EXPRESS</text>
+                        <text x="40" y="48" textAnchor="middle" fontSize="5.5" fill="#10B981" opacity="0.55" fontFamily="Sora, sans-serif">ACT2GO</text>
                       </svg>
                     </motion.div>
                   </div>
@@ -448,7 +448,7 @@ export default function App() {
                   <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-white/90 text-xs sm:text-[13px] font-medium mb-6"
                     style={{ background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.15)', backdropFilter: 'blur(8px)' }}>
                     <span>⚡</span>
-                    <span>ONRC Express · Dosar complet, termen rapid</span>
+                    <span>Act2Go · Dosar complet, termen rapid</span>
                   </div>
                   <h1 className="text-[1.8rem] sm:text-[2.2rem] md:text-[3rem] lg:text-[3.8rem] font-bold leading-[1.1] mb-3 sm:whitespace-nowrap" style={{ fontFamily: "'Lora', serif" }}>
                     De la cerere la <span className="relative inline-block">aprobare<span className="absolute left-0 right-0 bottom-1 h-[3px] bg-[#F59E0B]/60 rounded-full" /></span>
@@ -698,7 +698,7 @@ export default function App() {
             <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Lora', serif" }}>
               Cum funcționează?
             </h2>
-            <p className="text-gray-400 max-w-lg mx-auto text-lg">Trei pași simpli pentru a-ți rezolva orice problemă la ONRC</p>
+            <p className="text-gray-400 max-w-lg mx-auto text-lg">Trei pași simpli pentru a-ți rezolva orice problemă</p>
           </motion.div>
 
           <div className="relative">
@@ -751,7 +751,7 @@ export default function App() {
                 {
                   num: '3',
                   title: 'Primești documentele',
-                  desc: 'Depunem actele la ONRC și îți livrăm documentele finale în termenul stabilit.',
+                  desc: 'Depunem actele și îți livrăm documentele finale în termenul stabilit.',
                   gradient: 'from-emerald-500/20 to-emerald-600/5',
                   iconColor: '#10B981',
                   borderColor: 'border-emerald-500/30',
@@ -965,7 +965,7 @@ export default function App() {
                     </svg>
                   ),
                   label: 'Adresă',
-                  value: 'Str. Exemplu nr. 10, București, Sector 1'
+                  value: 'Str. Licurg nr. 8, Sector 2, București'
                 },
                 {
                   icon: (
@@ -974,7 +974,7 @@ export default function App() {
                     </svg>
                   ),
                   label: 'Telefon',
-                  value: '0734 128 000'
+                  value: '0755 058 162'
                 },
                 {
                   icon: (
@@ -983,7 +983,7 @@ export default function App() {
                     </svg>
                   ),
                   label: 'Email',
-                  value: 'contact@onrcexpress.ro'
+                  value: 'contact@act2go.ro'
                 },
                 {
                   icon: (
@@ -1012,7 +1012,7 @@ export default function App() {
                 <h4 className="text-lg font-bold mb-2">Ai nevoie de ajutor urgent?</h4>
                 <p className="text-gray-400 text-sm mb-5 leading-relaxed">Sună-ne direct pentru consultanță gratuită. Răspundem în maximum 30 de minute.</p>
                 <a
-                  href="tel:0734128000"
+                  href="tel:0755058162"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#F59E0B] text-gray-900 font-bold rounded-xl hover:bg-[#FCD34D] transition-colors text-sm"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -1045,11 +1045,11 @@ export default function App() {
               <div className="flex items-center gap-2 mb-3">
                 <LogoIcon className="w-7 h-7" />
                 <span className="text-xl text-white">
-                  <span style={{ fontFamily: "'Lora', serif", fontWeight: 600 }}>ONRC</span>
-                  <span className="text-gray-400" style={{ fontFamily: "'Sora', sans-serif", fontWeight: 500, letterSpacing: '0.05em' }}>Express</span>
+                  <span style={{ fontFamily: "'Lora', serif", fontWeight: 600 }}>Act</span>
+                  <span className="text-gray-400" style={{ fontFamily: "'Sora', sans-serif", fontWeight: 500, letterSpacing: '0.05em' }}>2Go</span>
                 </span>
               </div>
-              <p className="text-sm leading-relaxed">Partenerul tău de încredere pentru toate operațiunile de la Registrul Comerțului.</p>
+              <p className="text-sm leading-relaxed">Partenerul tău de încredere pentru toate operațiunile la Registrul Comerțului.</p>
             </div>
             <div>
               <h4 className="text-white font-semibold mb-3">Servicii</h4>
@@ -1074,9 +1074,9 @@ export default function App() {
             <div>
               <h4 className="text-white font-semibold mb-3">Contact</h4>
               <ul className="space-y-2 text-sm">
-                <li>📍 Str. Exemplu nr. 10, București</li>
-                <li>📞 0734 128 000</li>
-                <li>📧 contact@onrcexpress.ro</li>
+                <li>📍 Str. Licurg nr. 8, Sector 2, București</li>
+                <li>📞 0755 058 162</li>
+                <li>📧 contact@act2go.ro</li>
               </ul>
               <div className="mt-4">
                 <SocialIcons colorClass="text-gray-500" />
@@ -1084,7 +1084,7 @@ export default function App() {
             </div>
           </div>
           <div className="border-t border-gray-800 pt-6 text-center text-sm">
-            <p>&copy; {new Date().getFullYear()} ONRCExpress. Toate drepturile rezervate.</p>
+            <p>&copy; {new Date().getFullYear()} Act2Go. Toate drepturile rezervate.</p>
           </div>
         </div>
       </footer>
@@ -1093,7 +1093,7 @@ export default function App() {
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.1)] px-4 py-3">
         <div className="flex gap-3">
           <a
-            href="tel:0734128000"
+            href="tel:0755058162"
             className="flex-1 inline-flex items-center justify-center gap-2 py-3 bg-[#1E40AF] text-white rounded-full text-sm font-bold shadow-md active:scale-95 transition-transform"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1102,7 +1102,7 @@ export default function App() {
             Suna acum
           </a>
           <a
-            href="https://wa.me/40734128000"
+            href="https://wa.me/40755058162"
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 inline-flex items-center justify-center gap-2 py-3 bg-[#25D366] text-white rounded-full text-sm font-bold shadow-md active:scale-95 transition-transform"
@@ -1117,7 +1117,7 @@ export default function App() {
 
       {/* ─── DESKTOP FLOATING BUTTONS ─── */}
       <a
-        href="https://wa.me/40734128000"
+        href="https://wa.me/40755058162"
         target="_blank"
         rel="noopener noreferrer"
         className="hidden md:flex fixed bottom-6 right-6 w-14 h-14 bg-[#25D366] rounded-full items-center justify-center shadow-lg hover:scale-110 transition-transform z-40"

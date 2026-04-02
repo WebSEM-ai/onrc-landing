@@ -166,7 +166,7 @@ export default function BlogArticle() {
             <div className="w-9 h-9 rounded-lg bg-[#1E40AF] flex items-center justify-center">
               <span className="text-white font-bold text-sm">ON</span>
             </div>
-            <span className="text-lg font-bold text-gray-900 group-hover:text-[#1E40AF] transition-colors">ONRC<span className="text-[#F59E0B]">.ro</span></span>
+            <span className="text-lg font-bold text-gray-900 group-hover:text-[#1E40AF] transition-colors">Act<span className="text-[#F59E0B]">2Go</span></span>
           </Link>
           <Link to="/blog" className="text-sm text-[#1E40AF] font-medium hover:underline flex items-center gap-1">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
@@ -303,7 +303,7 @@ export default function BlogArticle() {
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-400 py-8 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center text-sm">
-          <p>&copy; {new Date().getFullYear()} ONRC.ro — Servicii profesionale Registrul Comertului</p>
+          <p>&copy; {new Date().getFullYear()} Act2Go — Servicii profesionale Registrul Comertului</p>
           <p className="mt-1 text-gray-500">Toate serviciile sunt oferite de echipa noastra de specialisti autorizati.</p>
         </div>
       </footer>
