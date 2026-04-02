@@ -7,9 +7,9 @@ import ServiceWizard from './ServiceWizard'
 /* ─── DATA ─── */
 const servicesData = [
   { id: "infiintare", category: "Înființare firme", icon: "🏢", color: "blue", services: [
-    { name: "Înființare SRL", price: "300 lei", duration: "3-5 zile", popular: true },
-    { name: "Înființare SRL-D (Debutant)", price: "300 lei", duration: "3-5 zile" },
-    { name: "Înființare PFA", price: "300 lei", duration: "2-3 zile", popular: true },
+    { name: "Înființare SRL", price: "450 lei", duration: "3-5 zile", popular: true, note: "taxe ONRC: 152 lei" },
+    { name: "Înființare SRL-D (Debutant)", price: "450 lei", duration: "3-5 zile", note: "taxe ONRC: 152 lei" },
+    { name: "Înființare PFA", price: "350 lei", duration: "2-3 zile", popular: true, note: "taxe ONRC: 0 lei" },
     { name: "Înființare II", price: "300 lei", duration: "2-3 zile" },
     { name: "Înființare IF", price: "300 lei", duration: "3-4 zile" },
     { name: "Înființare SA", price: "300 lei", duration: "5-7 zile" },
@@ -19,30 +19,32 @@ const servicesData = [
     { name: "Înființare Fundație", price: "300 lei", duration: "7-14 zile" }
   ]},
   { id: "modificari", category: "Modificări firmă", icon: "✏️", color: "purple", services: [
-    { name: "Schimbare sediu social", price: "300 lei", duration: "3-5 zile", popular: true },
-    { name: "Prelungire valabilitate sediu social", price: "300 lei", duration: "3-5 zile" },
+    { name: "Schimbare sediu social", price: "450 lei", duration: "3-5 zile", popular: true },
+    { name: "Prelungire valabilitate sediu social", price: "250 lei", duration: "3-5 zile" },
     { name: "Adăugare / retragere asociat", price: "300 lei", duration: "3-5 zile" },
-    { name: "Schimbare administrator", price: "300 lei", duration: "3-5 zile" },
-    { name: "Modificare obiect de activitate (CAEN)", price: "300 lei", duration: "3-5 zile", popular: true },
-    { name: "Majorare capital social", price: "300 lei", duration: "3-5 zile" },
+    { name: "Adăugare / retragere administrator", price: "400 lei", duration: "3-5 zile" },
+    { name: "Modificare obiect de activitate (CAEN)", price: "450 lei", duration: "3-5 zile", popular: true },
+    { name: "Majorare capital social", price: "450 lei", duration: "3-5 zile" },
     { name: "Reducere capital social", price: "300 lei", duration: "5-7 zile" },
-    { name: "Cesiune 100% părți sociale (preluare firmă)", price: "300 lei", duration: "5-7 zile" },
+    { name: "Cesiune părți sociale", price: "550 lei", duration: "5-7 zile" },
     { name: "Schimbare denumire firmă", price: "300 lei", duration: "3-5 zile" },
-    { name: "Înscriere emblemă", price: "300 lei", duration: "3-5 zile" },
-    { name: "Deschidere punct de lucru", price: "300 lei", duration: "3-5 zile" },
-    { name: "Schimbare formă juridică (SRL → SA)", price: "300 lei", duration: "7-14 zile" },
-    { name: "Transformare PFA în SRL", price: "300 lei", duration: "5-7 zile", popular: true }
+    { name: "Punct de lucru (deschidere / închidere)", price: "350 lei", duration: "3-5 zile" },
+    { name: "Actualizare CAEN Rev.3 (fără modificare act constitutiv)", price: "300 lei", duration: "3-5 zile" },
+    { name: "Actualizare date ONRC", price: "300 lei", duration: "3-5 zile" }
+  ]},
+  { id: "gazduire", category: "Găzduire sediu social", icon: "🏠", color: "teal", services: [
+    { name: "Găzduire sediu social — 12 luni", price: "550 lei", duration: "1-2 zile", popular: true },
+    { name: "Găzduire sediu social — 24 luni", price: "1000 lei", duration: "1-2 zile" }
   ]},
   { id: "radiere", category: "Radiere & Dizolvare", icon: "📁", color: "red", services: [
     { name: "Radiere SRL / SA", price: "300 lei", duration: "7-14 zile" },
     { name: "Radiere PFA / II / IF", price: "300 lei", duration: "3-5 zile" },
     { name: "Dizolvare voluntară", price: "300 lei", duration: "30+ zile" },
-    { name: "Suspendare activitate", price: "300 lei", duration: "2-3 zile" },
-    { name: "Reluare activitate", price: "300 lei", duration: "2-3 zile" }
+    { name: "Suspendare activitate", price: "350 lei", duration: "2-3 zile" },
+    { name: "Reluare activitate", price: "350 lei", duration: "2-3 zile" }
   ]},
   { id: "mentiuni", category: "Mențiuni & Depuneri", icon: "📋", color: "green", services: [
     { name: "Depunere situații financiare", price: "300 lei", duration: "1-2 zile" },
-    { name: "Cesiune părți sociale", price: "300 lei", duration: "3-5 zile" },
     { name: "Actualizare beneficiar real (AML)", price: "300 lei", duration: "1-2 zile", popular: true },
     { name: "Declarație pe propria răspundere", price: "300 lei", duration: "1 zi" },
     { name: "Depunere specimen semnătură", price: "300 lei", duration: "1-2 zile" },
@@ -75,6 +77,7 @@ const searchCategories = [
   { id: 'toate', label: 'Toate', short: 'Tot' },
   { id: 'infiintare', label: 'Înființare', short: 'Înf.' },
   { id: 'modificari', label: 'Modificări', short: 'Mod.' },
+  { id: 'gazduire', label: 'Sediu social', short: 'Sediu' },
   { id: 'radiere', label: 'Radiere', short: 'Rad.' },
   { id: 'documente', label: 'Documente', short: 'Doc.' },
 ]
@@ -83,6 +86,7 @@ const searchPlaceholders = {
   toate: 'Caută orice serviciu ONRC...',
   infiintare: 'ex: SRL, PFA, SA, ONG...',
   modificari: 'ex: schimbare sediu, administrator...',
+  gazduire: 'ex: găzduire sediu social...',
   radiere: 'ex: radiere SRL, suspendare...',
   documente: 'ex: certificat constatator...',
 }
@@ -216,6 +220,7 @@ export default function App() {
     { label: 'Servicii', href: '/servicii' },
     { label: 'Pachete', href: '/servicii#pachete' },
     { label: 'Coduri CAEN', href: '/coduri-caen' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Despre noi', href: '#despre' },
     { label: 'Contact', href: '#contact' },
   ]
@@ -1064,6 +1069,7 @@ export default function App() {
             <div>
               <h4 className="text-white font-semibold mb-3">Companie</h4>
               <ul className="space-y-2 text-sm">
+                <li><a href="/blog" className="hover:text-white transition-colors">Blog</a></li>
                 <li><a href="#despre" className="hover:text-white transition-colors">Despre noi</a></li>
                 <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Politica de confidențialitate</a></li>

@@ -22,6 +22,15 @@ const serviceCategories = [
     color: 'purple',
   },
   {
+    id: 'gazduire',
+    icon: '🏠',
+    title: 'Gazduire sediu social',
+    subtitle: '12 luni sau 24 luni',
+    description: 'Oferim adresa de sediu social pentru firma ta, cu contract de gazduire valabil la Registrul Comertului. Disponibil pe perioade de 12 sau 24 luni.',
+    includes: ['Contract gazduire sediu social', 'Adresa valabila ONRC', 'Prelungire simpla la expirare'],
+    color: 'teal',
+  },
+  {
     id: 'radiere',
     icon: '📁',
     title: 'Radiere & Dizolvare',
@@ -56,6 +65,7 @@ const colorMap = {
   red: { bg: 'bg-red-50', border: 'border-red-200', icon: 'bg-red-100 text-red-700', tag: 'bg-red-100 text-red-700' },
   green: { bg: 'bg-green-50', border: 'border-green-200', icon: 'bg-green-100 text-green-700', tag: 'bg-green-100 text-green-700' },
   orange: { bg: 'bg-orange-50', border: 'border-orange-200', icon: 'bg-orange-100 text-orange-700', tag: 'bg-orange-100 text-orange-700' },
+  teal: { bg: 'bg-teal-50', border: 'border-teal-200', icon: 'bg-teal-100 text-teal-700', tag: 'bg-teal-100 text-teal-700' },
 }
 
 const packages = [
@@ -66,10 +76,11 @@ const packages = [
     popular: false,
     features: [
       'Infiintare SRL sau PFA',
-      'Sediu social inclus (2 luni)',
+      'Contabilitate gratuita inclusa (primele 2 luni)',
       'Consultanta alegere cod CAEN Rev.3',
       'Asistenta la fiecare pas',
     ],
+    note: 'Taxele ONRC de 152 lei nu sunt incluse',
     example: 'Ideal pentru freelanceri si consultanti',
     color: 'blue',
   },
@@ -81,10 +92,10 @@ const packages = [
     features: [
       'Infiintare SRL',
       'Domeniu .ro + hosting (1 an)',
-      'Sediu social inclus (3 luni)',
       'Consultanta CAEN Rev.3',
       'Configurare initiala domeniu',
     ],
+    note: 'Taxele ONRC de 152 lei nu sunt incluse',
     example: 'Perfect pentru e-commerce, dropshipping, servicii digitale — ca Emag, FashionDays',
     color: 'indigo',
   },
@@ -95,12 +106,12 @@ const packages = [
     popular: false,
     features: [
       'Infiintare SRL sau PFA',
-      'Inregistrare la ARR (transport)',
+      'Ridesharing Uber / Bolt',
       'Consultanta licente transport',
-      'Sediu social inclus (3 luni)',
       'Asistenta completa autorizatii',
     ],
-    example: 'Ideal pentru Bolt, Uber, transport marfa, curierat — ca Sameday, Fan Courier',
+    note: 'Taxele ONRC de 152 lei nu sunt incluse',
+    example: 'Ideal pentru ridesharing Uber, Bolt',
     color: 'teal',
   },
   {
@@ -110,12 +121,11 @@ const packages = [
     popular: true,
     features: [
       'Infiintare SRL',
-      'Contabilitate GRATUITA 2 luni',
-      'Sediu social inclus (6 luni)',
       'Consultanta completa CAEN + forma juridica',
       'Certificat constatator inclus',
       'Asistenta prioritara dedicata',
     ],
+    note: 'Taxele ONRC de 152 lei nu sunt incluse',
     example: 'Pachetul all-inclusive — restaurant, salon, constructii — ca McDonald\'s, Dedeman',
     color: 'amber',
   },
@@ -233,6 +243,12 @@ function PackageCard({ pkg, index }) {
           </li>
         ))}
       </ul>
+
+      {pkg.note && (
+        <div className="bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-3">
+          <p className="text-xs text-amber-700 font-medium">{pkg.note}</p>
+        </div>
+      )}
 
       <div className="bg-gray-50 rounded-xl px-4 py-3 mb-5">
         <p className="text-xs text-gray-500 leading-relaxed">
@@ -382,7 +398,7 @@ export default function ServiciiPage() {
             className="mt-12 text-center"
           >
             <p className="text-sm text-gray-400">
-              Toate preturile includ TVA. Taxele ONRC (taxa judiciara, publicare Monitor Oficial etc.) sunt separate si se achita direct catre institutii.
+              Toate preturile includ TVA. Taxele ONRC aferente publicarii in Monitorul Oficial nu sunt incluse in pret si pot varia intre 150–390 lei.
             </p>
           </motion.div>
         </div>

@@ -5,6 +5,8 @@ import './index.css'
 import App from './App.jsx'
 import CaenExplorer from './CaenExplorer.jsx'
 import ServiciiPage from './ServiciiPage.jsx'
+import BlogPage from './BlogPage.jsx'
+import BlogArticle from './BlogArticle.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -13,6 +15,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />} />
         <Route path="/coduri-caen" element={<CaenExplorer />} />
         <Route path="/servicii" element={<ServiciiPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:slug" element={<BlogArticle />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

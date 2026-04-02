@@ -8,22 +8,23 @@ const entityTypes = [
   { id: 'pfa', label: 'PFA' },
   { id: 'ii', label: 'Întreprindere Individuală (II)' },
   { id: 'if', label: 'Întreprindere Familială (IF)' },
-  { id: 'oricare', label: 'Nu știu / Oricare' },
+  { id: 'oricare', label: 'Firmă' },
 ]
 
 /* ─── ENTITY → CATEGORY MAPPING ─── */
 const entityCategoryMap = {
-  pfa: ['infiintare', 'modificari', 'radiere', 'documente'],
-  ii: ['infiintare', 'modificari', 'radiere', 'documente'],
-  if: ['infiintare', 'modificari', 'radiere', 'documente'],
-  srl: ['infiintare', 'modificari', 'radiere', 'mentiuni', 'documente'],
-  sa: ['infiintare', 'modificari', 'radiere', 'mentiuni', 'documente'],
-  oricare: ['infiintare', 'modificari', 'radiere', 'mentiuni', 'documente'],
+  pfa: ['infiintare', 'modificari', 'gazduire', 'radiere', 'documente'],
+  ii: ['infiintare', 'modificari', 'gazduire', 'radiere', 'documente'],
+  if: ['infiintare', 'modificari', 'gazduire', 'radiere', 'documente'],
+  srl: ['infiintare', 'modificari', 'gazduire', 'radiere', 'mentiuni', 'documente'],
+  sa: ['infiintare', 'modificari', 'gazduire', 'radiere', 'mentiuni', 'documente'],
+  oricare: ['infiintare', 'modificari', 'gazduire', 'radiere', 'mentiuni', 'documente'],
 }
 
 const categoryMeta = [
   { id: 'infiintare', label: 'Înființare', icon: '🏢' },
   { id: 'modificari', label: 'Modificări firmă', icon: '✏️' },
+  { id: 'gazduire', label: 'Găzduire sediu social', icon: '🏠' },
   { id: 'radiere', label: 'Radiere & Dizolvare', icon: '📁' },
   { id: 'mentiuni', label: 'Mențiuni & Depuneri', icon: '📋' },
   { id: 'documente', label: 'Obținere documente', icon: '🔍' },
@@ -177,7 +178,7 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
 
   const totalPrice = useMemo(() => {
     if (cart.length === 0) return 0
-    return 300 + (cart.length - 1) * 100
+    return cart.reduce((sum, item) => sum + extractPrice(item.price), 0)
   }, [cart])
 
   /* ─── Handlers ─── */
@@ -324,7 +325,7 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
                         <span className="text-xs text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">
                           {service.duration}
                         </span>
-                        <span className="text-xs font-semibold text-[#1E40AF]">{cart.length === 0 || isInCart(service.name) ? '300 lei' : '+100 lei'}</span>
+                        <span className="text-xs font-semibold text-[#1E40AF]">{service.price}</span>
                       </div>
                     </div>
                     <button
@@ -384,7 +385,7 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
                   <p className="text-sm font-medium text-gray-800 leading-tight">{item.name}</p>
                   <div className="flex items-center gap-2 mt-1">
                     <span className="text-xs text-gray-400 bg-gray-200/60 px-1.5 py-0.5 rounded">{item.category}</span>
-                    <span className="text-xs font-semibold text-[#1E40AF]">{idx === 0 ? '300 lei' : '+100 lei'}</span>
+                    <span className="text-xs font-semibold text-[#1E40AF]">{item.price}</span>
                   </div>
                 </div>
                 <button
