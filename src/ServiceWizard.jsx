@@ -7,7 +7,6 @@ const entityTypes = [
   { id: 'sa', label: 'SA' },
   { id: 'pfa', label: 'PFA' },
   { id: 'ii', label: 'Întreprindere Individuală (II)' },
-  { id: 'if', label: 'Întreprindere Familială (IF)' },
   { id: 'oricare', label: 'Firmă' },
 ]
 
@@ -15,7 +14,6 @@ const entityTypes = [
 const entityCategoryMap = {
   pfa: ['infiintare', 'modificari', 'gazduire', 'radiere', 'documente'],
   ii: ['infiintare', 'modificari', 'gazduire', 'radiere', 'documente'],
-  if: ['infiintare', 'modificari', 'gazduire', 'radiere', 'documente'],
   srl: ['infiintare', 'modificari', 'gazduire', 'radiere', 'mentiuni', 'documente'],
   sa: ['infiintare', 'modificari', 'gazduire', 'radiere', 'mentiuni', 'documente'],
   oricare: ['infiintare', 'modificari', 'gazduire', 'radiere', 'mentiuni', 'documente'],
@@ -178,7 +176,14 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
 
   const totalPrice = useMemo(() => {
     if (cart.length === 0) return 0
-    return cart.reduce((sum, item) => sum + extractPrice(item.price), 0)
+    let modCount = 0
+    return cart.reduce((sum, item) => {
+      if (item.categoryId === 'modificari') {
+        modCount++
+        return sum + (modCount === 1 ? extractPrice(item.price) : 250)
+      }
+      return sum + extractPrice(item.price)
+    }, 0)
   }, [cart])
 
   /* ─── Handlers ─── */
@@ -372,7 +377,16 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
           </div>
         ) : (
           <AnimatePresence>
-            {cart.map((item, idx) => (
+            {cart.map((item, idx) => {
+              let modIndex = 0
+              if (item.categoryId === 'modificari') {
+                for (let i = 0; i <= idx; i++) {
+                  if (cart[i].categoryId === 'modificari') modIndex++
+                }
+              }
+              const isDiscounted = item.categoryId === 'modificari' && modIndex > 1
+              const displayPrice = isDiscounted ? '250 lei' : item.price
+              return (
               <motion.div
                 key={item.name}
                 initial={{ opacity: 0, y: -10 }}
@@ -385,7 +399,14 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
                   <p className="text-sm font-medium text-gray-800 leading-tight">{item.name}</p>
                   <div className="flex items-center gap-2 mt-1">
                     <span className="text-xs text-gray-400 bg-gray-200/60 px-1.5 py-0.5 rounded">{item.category}</span>
-                    <span className="text-xs font-semibold text-[#1E40AF]">{item.price}</span>
+                    {isDiscounted ? (
+                      <>
+                        <span className="text-xs text-gray-400 line-through">{item.price}</span>
+                        <span className="text-xs font-semibold text-green-600">{displayPrice}</span>
+                      </>
+                    ) : (
+                      <span className="text-xs font-semibold text-[#1E40AF]">{displayPrice}</span>
+                    )}
                   </div>
                 </div>
                 <button
@@ -397,7 +418,8 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
                   </svg>
                 </button>
               </motion.div>
-            ))}
+              )
+            })}
           </AnimatePresence>
         )}
       </div>
@@ -419,6 +441,9 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
         >
           Solicită ofertă gratuită
         </button>
+        <p className="text-[10px] text-gray-400 leading-snug mt-2">
+          Taxele ONRC nu sunt incluse. Taxa înființare societate 155 lei. Taxele aferente altor modificări variază între 150-390 lei.
+        </p>
       </div>
     </div>
   )

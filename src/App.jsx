@@ -7,16 +7,12 @@ import ServiceWizard from './ServiceWizard'
 /* ─── DATA ─── */
 const servicesData = [
   { id: "infiintare", category: "Înființare firme", icon: "🏢", color: "blue", services: [
-    { name: "Înființare SRL", price: "450 lei", duration: "3-5 zile", popular: true, note: "taxe ONRC: 152 lei" },
-    { name: "Înființare SRL-D (Debutant)", price: "450 lei", duration: "3-5 zile", note: "taxe ONRC: 152 lei" },
-    { name: "Înființare PFA", price: "350 lei", duration: "2-3 zile", popular: true, note: "taxe ONRC: 0 lei" },
+    { name: "Înființare SRL", price: "450 lei", duration: "3-5 zile", popular: true },
+    { name: "Înființare SRL-D (Debutant)", price: "450 lei", duration: "3-5 zile" },
+    { name: "Înființare PFA", price: "350 lei", duration: "2-3 zile", popular: true },
     { name: "Înființare II", price: "300 lei", duration: "2-3 zile" },
-    { name: "Înființare IF", price: "300 lei", duration: "3-4 zile" },
-    { name: "Înființare SA", price: "300 lei", duration: "5-7 zile" },
-    { name: "Înființare Sucursală / Filială", price: "300 lei", duration: "5-7 zile" },
-    { name: "Înființare Cooperativă", price: "300 lei", duration: "7-10 zile" },
-    { name: "Înființare ONG / Asociație", price: "300 lei", duration: "5-10 zile" },
-    { name: "Înființare Fundație", price: "300 lei", duration: "7-14 zile" }
+    { name: "Înființare SA", price: "1000 lei", duration: "5-7 zile" },
+    { name: "Înființare Sucursală / Filială", price: "1000 lei", duration: "5-7 zile" }
   ]},
   { id: "modificari", category: "Modificări firmă", icon: "✏️", color: "purple", services: [
     { name: "Schimbare sediu social", price: "450 lei", duration: "3-5 zile", popular: true },
@@ -29,17 +25,16 @@ const servicesData = [
     { name: "Cesiune părți sociale", price: "550 lei", duration: "5-7 zile" },
     { name: "Schimbare denumire firmă", price: "300 lei", duration: "3-5 zile" },
     { name: "Punct de lucru (deschidere / închidere)", price: "350 lei", duration: "3-5 zile" },
-    { name: "Actualizare CAEN Rev.3 (fără modificare act constitutiv)", price: "300 lei", duration: "3-5 zile" },
-    { name: "Actualizare date ONRC", price: "300 lei", duration: "3-5 zile" }
+    { name: "Actualizare CAEN Rev.3 (fără modificare act constitutiv)", price: "300 lei", duration: "3-5 zile" }
   ]},
   { id: "gazduire", category: "Găzduire sediu social", icon: "🏠", color: "teal", services: [
     { name: "Găzduire sediu social — 12 luni", price: "550 lei", duration: "1-2 zile", popular: true },
     { name: "Găzduire sediu social — 24 luni", price: "1000 lei", duration: "1-2 zile" }
   ]},
   { id: "radiere", category: "Radiere & Dizolvare", icon: "📁", color: "red", services: [
-    { name: "Radiere SRL / SA", price: "300 lei", duration: "7-14 zile" },
-    { name: "Radiere PFA / II / IF", price: "300 lei", duration: "3-5 zile" },
-    { name: "Dizolvare voluntară", price: "300 lei", duration: "30+ zile" },
+    { name: "Radiere SRL / SA", price: "450 lei", duration: "7-14 zile" },
+    { name: "Radiere PFA / II", price: "450 lei", duration: "3-5 zile" },
+    { name: "Dizolvare voluntară", price: "450 lei", duration: "30+ zile" },
     { name: "Suspendare activitate", price: "350 lei", duration: "2-3 zile" },
     { name: "Reluare activitate", price: "350 lei", duration: "2-3 zile" }
   ]},
@@ -83,8 +78,8 @@ const searchCategories = [
 ]
 
 const searchPlaceholders = {
-  toate: 'Caută orice serviciu ONRC...',
-  infiintare: 'ex: SRL, PFA, SA, ONG...',
+  toate: 'Caută orice serviciu...',
+  infiintare: 'ex: SRL, PFA, SA...',
   modificari: 'ex: schimbare sediu, administrator...',
   gazduire: 'ex: găzduire sediu social...',
   radiere: 'ex: radiere SRL, suspendare...',
