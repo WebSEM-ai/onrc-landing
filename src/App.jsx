@@ -214,7 +214,7 @@ export default function App() {
   const navLinks = [
     { label: 'Servicii', href: '/servicii' },
     { label: 'Pachete', href: '/servicii#pachete' },
-    { label: 'Coduri CAEN', href: '/coduri-caen' },
+    // { label: 'Coduri CAEN', href: '/coduri-caen' },
     { label: 'Blog', href: '/blog' },
     { label: 'Despre noi', href: '#despre' },
     { label: 'Contact', href: '#contact' },
@@ -1058,7 +1058,7 @@ export default function App() {
                   <li key={cat.id}><a href="#servicii" className="hover:text-white transition-colors">{cat.category}</a></li>
                 ))}
                 <li><a href="/servicii" className="hover:text-white transition-colors text-[#F59E0B]">Toate serviciile & pachete</a></li>
-                <li><a href="/coduri-caen" className="hover:text-white transition-colors text-[#F59E0B]">Lista coduri CAEN Rev.3</a></li>
+                {/* <li><a href="/coduri-caen" className="hover:text-white transition-colors text-[#F59E0B]">Lista coduri CAEN Rev.3</a></li> */}
               </ul>
             </div>
             <div>
