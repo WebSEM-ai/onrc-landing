@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 /* ─── ENTITY TYPES ─── */
 const entityTypes = [
@@ -114,6 +115,26 @@ function MobileStep({ step, title, isOpen, isCompleted, summary, onToggle, child
         )}
       </AnimatePresence>
     </div>
+  )
+}
+
+/* ─── MOBILE CONTINUE BUTTON ─── */
+function ContinueButton({ enabled, onClick, label = 'Continuă' }) {
+  return (
+    <button
+      onClick={onClick}
+      disabled={!enabled}
+      className={`md:hidden w-full mt-3 py-3 rounded-full font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
+        enabled
+          ? 'bg-[#1E40AF] text-white shadow-lg shadow-blue-900/20 cursor-pointer animate-[pulseRing_1.6s_ease-in-out_infinite]'
+          : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+      }`}
+    >
+      <span>{label}</span>
+      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </button>
   )
 }
 
@@ -269,7 +290,12 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
           return (
             <button
               key={cat.id}
-              onClick={() => isAllowed && setSelectedCategory(isSelected ? null : cat.id)}
+              onClick={() => {
+                if (!isAllowed) return
+                const next = isSelected ? null : cat.id
+                setSelectedCategory(next)
+                if (next) setTimeout(() => setMobileStep(3), 350)
+              }}
               className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-lg text-left text-base transition-all ${
                 !isAllowed ? 'opacity-40 cursor-not-allowed' :
                 isSelected ? 'bg-blue-50 text-[#1E40AF] font-semibold ring-1 ring-[#1E40AF]/30' :
@@ -500,6 +526,11 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
           onToggle={() => setMobileStep(mobileStep === 1 ? 0 : 1)}
         >
           {renderPanel1Content()}
+          <ContinueButton
+            enabled={selectedEntities.length > 0}
+            onClick={() => setMobileStep(2)}
+            label="Mai departe"
+          />
         </MobileStep>
 
         <MobileStep
@@ -522,6 +553,11 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
           onToggle={() => setMobileStep(mobileStep === 3 ? 0 : 3)}
         >
           {renderPanel3Content()}
+          <ContinueButton
+            enabled={cart.length > 0}
+            onClick={() => setMobileStep(4)}
+            label={cart.length > 0 ? `Vezi coșul (${cart.length})` : 'Vezi coșul'}
+          />
         </MobileStep>
 
         <MobileStep
@@ -540,6 +576,43 @@ export default function ServiceWizard({ servicesData, onRequestQuote }) {
       <p className="text-[10px] text-gray-400 leading-snug mt-4 text-center max-w-2xl mx-auto">
         Taxele ONRC nu sunt incluse. Taxa înființare societate 152 lei. Taxele aferente altor modificări variază între 150-390 lei.
       </p>
+
+      {/* FAQ big CTA */}
+      <div className="mt-8 md:mt-10 max-w-4xl mx-auto">
+        <Link
+          to="/intrebari-frecvente"
+          className="group relative block overflow-hidden rounded-2xl bg-gradient-to-r from-[#1E40AF] via-[#1E3A8A] to-[#172554] px-6 py-6 md:px-10 md:py-8 text-white shadow-lg hover:shadow-2xl transition-shadow"
+        >
+          <div className="absolute inset-0 opacity-10 pointer-events-none">
+            <div className="absolute -top-8 -right-8 w-40 h-40 bg-[#F59E0B] rounded-full blur-3xl" />
+            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-white rounded-full blur-3xl" />
+          </div>
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex items-start gap-4">
+              <div className="w-11 h-11 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center shrink-0">
+                <svg className="w-6 h-6 text-[#F59E0B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <div className="text-xs font-semibold text-[#F59E0B] uppercase tracking-wider mb-1">Întrebări frecvente</div>
+                <h3 className="text-lg md:text-2xl font-bold leading-tight" style={{ fontFamily: "'Lora', serif" }}>
+                  Ai nelămuriri despre taxe, durate sau proceduri ONRC?
+                </h3>
+                <p className="text-blue-200 text-sm md:text-base mt-1 max-w-xl">
+                  Vezi răspunsurile la cele mai frecvente întrebări despre Registrul Comerțului.
+                </p>
+              </div>
+            </div>
+            <span className="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 bg-[#F59E0B] text-gray-900 rounded-full text-sm md:text-base font-bold group-hover:bg-[#FCD34D] transition-colors shadow-md whitespace-nowrap">
+              Vezi întrebările
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </div>
+        </Link>
+      </div>
     </>
   )
 }

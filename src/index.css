@@ -154,3 +154,77 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
+
+/* ═══════════════════════════════════════════
+   PULSE RING — wizard "Continuă" + side CTA
+   ═══════════════════════════════════════════ */
+
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55), 0 10px 25px -5px rgba(30, 64, 175, 0.4); }
+  70% { box-shadow: 0 0 0 14px rgba(245, 158, 11, 0), 0 10px 25px -5px rgba(30, 64, 175, 0.4); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0), 0 10px 25px -5px rgba(30, 64, 175, 0.4); }
+}
+
+/* ═══════════════════════════════════════════
+   SIDE CTA — vertical attention button (refined)
+   ═══════════════════════════════════════════ */
+
+@keyframes sideCtaGlow {
+  0%, 100% {
+    box-shadow:
+      0 10px 30px -8px rgba(15, 23, 42, 0.45),
+      -2px 0 0 0 rgba(245, 158, 11, 0.65),
+      0 0 0 0 rgba(245, 158, 11, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 14px 36px -8px rgba(15, 23, 42, 0.55),
+      -2px 0 0 0 rgba(245, 158, 11, 1),
+      -8px 0 24px -4px rgba(245, 158, 11, 0.35);
+  }
+}
+
+@keyframes sideCtaSheen {
+  0% { transform: translateY(-110%); opacity: 0; }
+  35% { opacity: 0.6; }
+  60% { opacity: 0; }
+  100% { transform: translateY(110%); opacity: 0; }
+}
+
+.side-cta {
+  background: linear-gradient(180deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+  color: #F8FAFC;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  overflow: hidden;
+  animation: sideCtaGlow 3s ease-in-out infinite;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.side-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(245, 158, 11, 0.18) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: sideCtaSheen 4.5s ease-in-out infinite;
+}
+
+.side-cta:hover {
+  animation-play-state: paused;
+  transform: translate(-3px, -50%) !important;
+}
+
+.side-cta .side-cta-arrow {
+  color: #F59E0B;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.side-cta:hover .side-cta-arrow {
+  transform: rotate(-90deg) translateX(3px);
+}

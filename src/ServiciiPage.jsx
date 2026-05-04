@@ -405,6 +405,44 @@ export default function ServiciiPage() {
         </div>
       </section>
 
+      {/* ─── SECTION: Lista completa servicii ONRC ─── */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-4 md:pb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="bg-white border-2 border-[#1E40AF]/10 rounded-2xl p-6 md:p-10 relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl opacity-60 pointer-events-none" />
+          <div className="relative z-10 grid md:grid-cols-[1fr_auto] gap-6 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-blue-50 text-[#1E40AF] rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide mb-3">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Ghid informativ ONRC
+              </div>
+              <h2 className="text-xl md:text-3xl font-bold text-gray-900 mb-2" style={{ fontFamily: "'Lora', serif" }}>
+                Vezi lista completă cu serviciile Registrului Comerțului
+              </h2>
+              <p className="text-gray-600 md:text-base text-sm max-w-2xl">
+                Toate operațiunile oficiale ONRC – înmatriculări, mențiuni, radieri, certificate, beneficiari reali – structurate pe 11 categorii conform Legii nr. 265/2022.
+              </p>
+            </div>
+            <Link
+              to="/servicii-onrc"
+              className="shrink-0 inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-3.5 bg-[#1E40AF] text-white rounded-full text-sm md:text-base font-bold hover:bg-[#1E3A8A] transition-colors shadow-md whitespace-nowrap"
+            >
+              Deschide ghidul
+              <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        </motion.div>
+      </section>
+
       {/* ─── BOTTOM CTA ─── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
         <div className="bg-gradient-to-r from-[#1E40AF] to-[#1E3A8A] rounded-2xl p-8 md:p-12 text-center text-white relative overflow-hidden">
@@ -430,7 +468,7 @@ export default function ServiciiPage() {
                 </svg>
               </Link>
               <Link
-                to="/caen"
+                to="/coduri-caen"
                 className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white/10 backdrop-blur-sm text-white border border-white/20 rounded-full text-base font-semibold hover:bg-white/20 transition-colors"
               >
                 Exploreaza coduri CAEN
