@@ -204,6 +204,19 @@ export default function App() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
+    const lines = [
+      'Bună ziua! Doresc o ofertă.',
+      '',
+      `*Nume:* ${formData.name}`,
+      `*Telefon:* ${formData.phone}`,
+    ]
+    if (formData.email) lines.push(`*Email:* ${formData.email}`)
+    if (formData.service) lines.push(`*Serviciu dorit:* ${formData.service}`)
+    if (formData.message) lines.push('', `*Mesaj:*`, formData.message)
+    const text = encodeURIComponent(lines.join('\n'))
+    const waUrl = `https://wa.me/40734128000?text=${text}`
+    window.gtag?.('event', 'form_submit', { event_category: 'lead', event_label: 'contact_form' })
+    window.open(waUrl, '_blank', 'noopener,noreferrer')
     setFormSubmitted(true)
     setFormData({ name: '', phone: '', email: '', service: '', message: '' })
     setTimeout(() => setFormSubmitted(false), 5000)
@@ -214,7 +227,7 @@ export default function App() {
   const navLinks = [
     { label: 'Servicii', href: '/servicii' },
     { label: 'Pachete', href: '/servicii#pachete' },
-    // { label: 'Coduri CAEN', href: '/coduri-caen' },
+    { label: 'Coduri CAEN', href: '/coduri-caen' },
     { label: 'Blog', href: '/blog' },
     { label: 'Despre noi', href: '#despre' },
     { label: 'Contact', href: '#contact' },
@@ -844,10 +857,10 @@ export default function App() {
                     animate={{ opacity: 1, y: 0 }}
                     className="bg-emerald-50 border border-emerald-200 text-emerald-700 px-5 py-4 rounded-xl text-sm font-medium flex items-center gap-3"
                   >
-                    <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                     </svg>
-                    Mesajul a fost trimis cu succes! Te vom contacta în cel mai scurt timp.
+                    Te redirecționăm spre WhatsApp — apasă „Trimite" în aplicație ca să primim mesajul.
                   </motion.div>
                 )}
 
@@ -888,14 +901,13 @@ export default function App() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-2">Email</label>
+                    <label className="block text-sm font-semibold text-gray-800 mb-2">Email <span className="text-gray-400 font-normal">(opțional)</span></label>
                     <div className="relative">
                       <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                       <input
                         type="email"
-                        required
                         value={formData.email}
                         onChange={e => setFormData({ ...formData, email: e.target.value })}
                         className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:border-[#1E40AF] focus:ring-2 focus:ring-[#1E40AF]/10 outline-none transition-all text-sm"
@@ -937,13 +949,17 @@ export default function App() {
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="w-full py-4 bg-[#1E40AF] text-white font-semibold rounded-xl hover:bg-[#1E3A8A] transition-all shadow-lg shadow-blue-900/20 text-base cursor-pointer group flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-[#25D366] text-white font-semibold rounded-xl hover:bg-[#1FB755] transition-all shadow-lg shadow-emerald-900/20 text-base cursor-pointer group flex items-center justify-center gap-2"
                 >
-                  <span>Trimite mesajul</span>
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                  </svg>
+                  <span>Trimite oferta pe WhatsApp</span>
                   <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </button>
+                <p className="text-xs text-center text-gray-400">Apăsând, deschidem WhatsApp cu mesajul completat. Tu doar apeși „Send".</p>
               </form>
             </motion.div>
 
@@ -974,7 +990,7 @@ export default function App() {
                     </svg>
                   ),
                   label: 'Telefon',
-                  value: '0755 058 162'
+                  value: '0734 128 000'
                 },
                 {
                   icon: (
@@ -1012,7 +1028,8 @@ export default function App() {
                 <h4 className="text-lg font-bold mb-2">Ai nevoie de ajutor urgent?</h4>
                 <p className="text-gray-400 text-sm mb-5 leading-relaxed">Sună-ne direct pentru consultanță gratuită. Răspundem în maximum 30 de minute.</p>
                 <a
-                  href="tel:0755058162"
+                  href="tel:0734128000"
+                  onClick={() => window.gtag?.('event', 'phone_click', { event_category: 'lead', event_label: 'urgent_cta' })}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#F59E0B] text-gray-900 font-bold rounded-xl hover:bg-[#FCD34D] transition-colors text-sm"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -1058,7 +1075,7 @@ export default function App() {
                   <li key={cat.id}><a href="#servicii" className="hover:text-white transition-colors">{cat.category}</a></li>
                 ))}
                 <li><a href="/servicii" className="hover:text-white transition-colors text-[#F59E0B]">Toate serviciile & pachete</a></li>
-                {/* <li><a href="/coduri-caen" className="hover:text-white transition-colors text-[#F59E0B]">Lista coduri CAEN Rev.3</a></li> */}
+                <li><a href="/coduri-caen" className="hover:text-white transition-colors text-[#F59E0B]">Lista coduri CAEN Rev.3</a></li>
               </ul>
             </div>
             <div>
@@ -1075,7 +1092,7 @@ export default function App() {
               <h4 className="text-white font-semibold mb-3">Contact</h4>
               <ul className="space-y-2 text-sm">
                 <li>📍 Str. Licurg nr. 8, Sector 2, București</li>
-                <li>📞 0755 058 162</li>
+                <li>📞 0734 128 000</li>
                 <li>📧 contact@act2go.ro</li>
               </ul>
               <div className="mt-4">
@@ -1093,7 +1110,8 @@ export default function App() {
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.1)] px-4 py-3">
         <div className="flex gap-3">
           <a
-            href="tel:0755058162"
+            href="tel:0734128000"
+            onClick={() => window.gtag?.('event', 'phone_click', { event_category: 'lead', event_label: 'mobile_sticky' })}
             className="flex-1 inline-flex items-center justify-center gap-2 py-3 bg-[#1E40AF] text-white rounded-full text-sm font-bold shadow-md active:scale-95 transition-transform"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1102,9 +1120,10 @@ export default function App() {
             Suna acum
           </a>
           <a
-            href="https://wa.me/40755058162"
+            href="https://wa.me/40734128000"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => window.gtag?.('event', 'whatsapp_click', { event_category: 'lead', event_label: 'mobile_sticky' })}
             className="flex-1 inline-flex items-center justify-center gap-2 py-3 bg-[#25D366] text-white rounded-full text-sm font-bold shadow-md active:scale-95 transition-transform"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -1115,11 +1134,25 @@ export default function App() {
         </div>
       </div>
 
+      {/* ─── SIDE CTA — Cerere ofertă (desktop) ─── */}
+      <a
+        href="#contact"
+        className="side-cta hidden md:flex fixed right-0 top-1/2 -translate-y-1/2 z-40 items-center gap-6 pl-5 pr-4 py-12 rounded-l-xl font-medium text-[11px] cursor-pointer"
+        style={{ writingMode: 'vertical-rl' }}
+        aria-label="Cerere ofertă"
+      >
+        <span style={{ transform: 'rotate(180deg)' }}>Cerere ofertă</span>
+        <svg className="side-cta-arrow w-3.5 h-3.5 -rotate-90 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+
       {/* ─── DESKTOP FLOATING BUTTONS ─── */}
       <a
-        href="https://wa.me/40755058162"
+        href="https://wa.me/40734128000"
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => window.gtag?.('event', 'whatsapp_click', { event_category: 'lead', event_label: 'desktop_floating' })}
         className="hidden md:flex fixed bottom-6 right-6 w-14 h-14 bg-[#25D366] rounded-full items-center justify-center shadow-lg hover:scale-110 transition-transform z-40"
         aria-label="WhatsApp"
       >
